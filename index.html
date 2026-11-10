@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8fc" />
+  <title>منصة الأستاذ | دروسك في مكان واحد</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="العودة للرئيسية">
+      <span class="brand-mark">م</span>
+      <span>منصة الأستاذ <small>التعليمية</small></span>
+    </a>
+    <button class="button button-outline" id="openLogin" type="button">دخول المعلم <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="live-dot"></span> تعلّم في أي وقت ومن أي مكان</span>
+        <h1>خطوة بخطوة،<br /><span>نصل إلى التفوق.</span></h1>
+        <p>شاهد شرح الدروس بسهولة، وارجع إليها في أي وقت. كل ما تحتاجه للتعلّم، في مكان واحد.</p>
+        <a class="button button-primary" href="#lessons">اكتشف الدروس <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-card art-card-back"><span>✦</span><div class="art-lines"></div></div>
+        <div class="art-card art-card-front"><span class="play-icon">▶</span><div class="art-progress"><i></i></div><div class="art-caption">شرح مبسّط • تعلّم ممتع</div></div>
+        <span class="art-spark spark-one">✳</span><span class="art-spark spark-two">✦</span>
+      </div>
+    </section>
+
+    <section class="lessons-section" id="lessons">
+      <div class="section-heading">
+        <div><span class="eyebrow">مكتبة الشروحات</span><h2>الدروس التعليمية</h2></div>
+        <span class="lesson-count" id="lessonCount">٠ درس</span>
+      </div>
+      <div class="video-grid" id="videoGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">▶</div>
+        <h3>الدروس قادمة قريبًا</h3>
+        <p>سيضيف المعلم الفيديوهات هنا، تابعنا لتبدأ رحلة التعلّم.</p>
+      </div>
+    </section>
+
+    <section class="bottom-note"><span>✦</span><p>بالتعلّم المستمر، تصبح أهدافك أقرب.</p><span>✦</span></section>
+  </main>
+
+  <footer>صُممت بكل عناية لرحلتك التعليمية <span>♥</span></footer>
+
+  <div class="modal" id="loginModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="login"></div>
+    <section class="dialog login-dialog" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="close-button" type="button" data-close="login" aria-label="إغلاق">×</button>
+      <span class="dialog-icon">🔐</span>
+      <span class="eyebrow">مساحة خاصة بالمعلم</span>
+      <h2 id="loginTitle">تسجيل الدخول</h2>
+      <p class="dialog-description">أدخل كلمة المرور للوصول إلى لوحة التحكم.</p>
+      <form id="loginForm">
+        <label for="password">كلمة المرور</label>
+        <input id="password" type="password" placeholder="أدخل كلمة المرور" autocomplete="current-password" required />
+        <p class="form-error" id="loginError" role="alert"></p>
+        <button class="button button-primary button-full" type="submit">دخول إلى لوحة التحكم <span aria-hidden="true">←</span></button>
+      </form>
+      <p class="security-note">لوحة التحكم في هذا النموذج محلية على هذا الجهاز.</p>
+    </section>
+  </div>
+
+  <div class="modal" id="dashboardModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="dashboard"></div>
+    <section class="dialog dashboard-dialog" role="dialog" aria-modal="true" aria-labelledby="dashboardTitle">
+      <button class="close-button" type="button" data-close="dashboard" aria-label="إغلاق">×</button>
+      <div class="dashboard-heading">
+        <div><span class="eyebrow">إدارة المحتوى</span><h2 id="dashboardTitle">لوحة تحكم المعلم</h2></div>
+        <button class="button button-outline logout-button" id="logoutButton" type="button">تسجيل الخروج</button>
+      </div>
+      <p class="dialog-description">أضف درسًا جديدًا برفع فيديو من جهازك أو بإضافة رابط فيديو.</p>
+      <form id="videoForm" class="video-form">
+        <label for="videoTitle">عنوان الدرس</label>
+        <input id="videoTitle" type="text" placeholder="مثال: مقدمة في الرياضيات" maxlength="100" required />
+        <label for="videoDescription">وصف مختصر <span>(اختياري)</span></label>
+        <textarea id="videoDescription" rows="2" placeholder="اكتب نبذة بسيطة عن الدرس..."></textarea>
+        <div class="source-tabs" role="group" aria-label="طريقة إضافة الفيديو">
+          <button class="source-tab active" type="button" data-source="file">رفع من الجهاز</button>
+          <button class="source-tab" type="button" data-source="link">إضافة رابط</button>
+        </div>
+        <div class="source-panel" id="filePanel">
+          <label class="upload-box" for="videoFile"><span class="upload-icon">↑</span><strong>اختر فيديو من جهازك</strong><small id="fileName">MP4 أو WebM — اختر ملفًا من الهاتف أو الكمبيوتر</small></label>
+          <input class="file-input" id="videoFile" type="file" accept="video/mp4,video/webm,video/ogg,video/quicktime" />
+        </div>
+        <div class="source-panel hidden" id="linkPanel">
+          <label for="videoUrl">رابط الفيديو</label>
+          <input id="videoUrl" type="url" placeholder="https://..." dir="ltr" />
+          <small class="field-hint">يمكنك استخدام رابط مباشر للفيديو أو رابط YouTube.</small>
+        </div>
+        <p class="form-error" id="videoError" role="alert"></p>
+        <button class="button button-primary button-full" id="addVideoButton" type="submit">إضافة الدرس <span aria-hidden="true">＋</span></button>
+      </form>
+      <div class="manage-list-wrap"><h3>الدروس المضافة <span id="manageCount">٠</span></h3><div id="manageList" class="manage-list"></div></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
